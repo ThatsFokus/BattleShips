@@ -12,6 +12,7 @@
 
     public void run(){
         Console.Title = "Battleships";
+		Console.WriteLine("There will be 1 2TileShip, 2 3TileShip, 1 4TileShip, 1 5TileShip");
         Console.WriteLine("Press any Key to bombard a random map!");
         Console.ReadKey(true);
         bool playing = true;
@@ -54,6 +55,7 @@
 					
 					case ConsoleKey.Spacebar:
 						Console.Write(takeShot(cursor.Left -1, cursor.Top - 1, mapwithships, map));
+						Console.ResetColor();
 						shotsTaken++;
 						Console.SetCursorPosition(FieldSize[0] + 5, 0);
 						Console.Write($"Fired cannonballs: {shotsTaken}");
@@ -69,6 +71,8 @@
 				if (checkWinState(map, mapwithships))InRound = false;
 			}
 			Console.Clear();
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine("Winner");
 			Console.ResetColor();
 			Console.CursorVisible = false;
 			Console.WriteLine("Play another round? (y/n)");
@@ -82,9 +86,11 @@
 
 	private char takeShot(int x, int y, char[, ] mapwithships, char[,] map){
 		if (mapwithships[x, y] == HiddenShip) {
+			Console.ForegroundColor = ConsoleColor.Green;
 			map[x,y] = ShipHit;
 			return ShipHit;
 		}
+		Console.ForegroundColor = ConsoleColor.Red;
 		map[x,y] = ShipHit;
 		return ShipMiss;
 	}
