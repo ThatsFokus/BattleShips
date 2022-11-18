@@ -11,6 +11,7 @@
     }
 
     public void run(){
+		Console.Clear();
         Console.Title = "Battleships";
 		Console.WriteLine("There will be 1 2TileShip, 2 3TileShip, 1 4TileShip, 1 5TileShip");
         Console.WriteLine("Press any Key to bombard a random map!");
