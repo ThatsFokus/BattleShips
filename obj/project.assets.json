@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\RandomProjects\\BattleShips\\BattleShips\\BattleShips.csproj",
+      "projectUniqueName": "E:\\RandomProjects\\BattleShips\\BattleShips.csproj",
       "projectName": "BattleShips",
-      "projectPath": "E:\\RandomProjects\\BattleShips\\BattleShips\\BattleShips.csproj",
+      "projectPath": "E:\\RandomProjects\\BattleShips\\BattleShips.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "E:\\RandomProjects\\BattleShips\\BattleShips\\obj\\",
+      "outputPath": "E:\\RandomProjects\\BattleShips\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Visual Studio Freie Komponenten\\NuGetPackages"

@@ -1,28 +1,60 @@
 using System.Net.Sockets;
 using System.Net;
+using System.Text;
 class Server{
     private readonly int headerLength = 32;
     private readonly string headerText = "SIZE:";
     private Socket server;
     private List<Socket> clients;
+    private bool serverRunning;
     public Server(){
         clients = new List<Socket>();
+        serverRunning = true;
         IPHostEntry host = Dns.GetHostEntry("localhost");
         IPAddress iPAddress = host.AddressList[0];
         IPEndPoint localEndPoint = new IPEndPoint(iPAddress, 11000);
 
         server = new Socket(iPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
         server.Bind(localEndPoint);
-
-        server.Listen(10);
-        Console.WriteLine("[Server] Waiting for Connection...");
-        Socket client = server.Accept();
-        
-        
+        server.ReceiveTimeout = 1000;
     }
 
-    private async Task Handle(Socket client){
+    public void StartServer(){
+        runServer();
+    }
+
+    private async Task runServer(){
+        Console.WriteLine("[SERVER] Waiting for Connection...");
+        while(serverRunning){
+            Socket client = server.Accept();
+            if (client != null){
+                Console.WriteLine($"[SERVER] {client.LocalEndPoint.Serialize()[0]} connected");
+                clients.Add(client);
+                handleClient(client);
+            }
+        }
+        foreach(var client in clients){
+            client.Close();
+        }
+        server.Close();
+    }
+    private async Task stopServer(){
+        while (true){
+            if(Console.ReadLine() == "stop") break;
+            await Task.Delay(1000);
+        }
+        serverRunning = false;
+    }
+
+    private async Task handleClient(Socket client){
         await Task.Delay(25);
+        byte[] buffer = new byte[headerLength];
+        client.Receive(buffer);
+        if(buffer != null){
+            //read the header length and receive second message
+            
+        }
+
     }
 }
 

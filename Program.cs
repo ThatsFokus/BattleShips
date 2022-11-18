@@ -5,18 +5,20 @@
 	private readonly char HiddenShip = '#';
 	private readonly char ShipMiss = 'O';
 	private readonly int[] FieldSize = {10, 10};
+	private readonly int[] WindowSize = {852, 480};
 
     private static void Main(string[] args){
-        new Program().run();
+		new Program().run();
     }
 
     public void run(){
+		Console.Clear();
         Console.Title = "Battleships";
 		Console.WriteLine("There will be 1 2TileShip, 2 3TileShip, 1 4TileShip, 1 5TileShip");
         Console.WriteLine("Press any Key to bombard a random map!");
         Console.ReadKey(true);
         bool playing = true;
-
+		Console.SetWindowSize(WindowSize[0], WindowSize[1]);
         while (playing){
 			
             char[,] map = generateField();
@@ -78,10 +80,10 @@
 			Console.WriteLine("Play another round? (y/n)");
 			if (Console.ReadKey().Key == ConsoleKey.N){
 				playing = false;
-				Console.Clear();
 				Console.ResetColor();
 			}
         }
+		Console.Clear();
     }
 
 	private char takeShot(int x, int y, char[, ] mapwithships, char[,] map){
