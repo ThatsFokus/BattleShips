@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\PrivateProjects\\BattleShips\\BattleShips.csproj": {}
+    "E:\\RandomProjects\\BattleShips\\BattleShips\\BattleShips.csproj": {}
   },
   "projects": {
-    "C:\\PrivateProjects\\BattleShips\\BattleShips.csproj": {
+    "E:\\RandomProjects\\BattleShips\\BattleShips\\BattleShips.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\PrivateProjects\\BattleShips\\BattleShips.csproj",
+        "projectUniqueName": "E:\\RandomProjects\\BattleShips\\BattleShips\\BattleShips.csproj",
         "projectName": "BattleShips",
-        "projectPath": "C:\\PrivateProjects\\BattleShips\\BattleShips.csproj",
-        "packagesPath": "C:\\Users\\samsung\\.nuget\\packages\\",
-        "outputPath": "C:\\PrivateProjects\\BattleShips\\obj\\",
+        "projectPath": "E:\\RandomProjects\\BattleShips\\BattleShips\\BattleShips.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "E:\\RandomProjects\\BattleShips\\BattleShips\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Visual Studio Freie Komponenten\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\samsung\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
