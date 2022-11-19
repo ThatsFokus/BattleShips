@@ -8,6 +8,23 @@
 	private readonly int[] WindowSize = {852, 480};
 
     private static void Main(string[] args){
+		if (args.Contains("--server")){
+			var server = new Server();
+			server.StartServer();
+			return;
+		}
+		if (args.Contains("--multiplayer")){
+			var client = new Client();
+			Console.WriteLine("Where do you wish to connect?");
+			string ip = Console.ReadLine();
+			string[] strings = ip.Split(".", StringSplitOptions.RemoveEmptyEntries);
+			byte[] bytes = new byte[4];
+			for(int i = 0; i < 4; i++){
+				bytes[0] = Convert.ToByte(strings[0]);
+			}
+			client.Connect(bytes);
+			return;
+		}
 		new Program().run();
     }
 
@@ -65,16 +82,23 @@
 					case ConsoleKey.Escape:
 						playing = false;
 						InRound = false;
+						Console.Clear();
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Loser");
 						break;
 					default:
 						break;
 				}
 				Console.SetCursorPosition(cursor.Left, cursor.Top);
-				if (checkWinState(map, mapwithships))InRound = false;
+				if (checkWinState(map, mapwithships)){
+					InRound = false;
+					Console.Clear();
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("Winner");
+				}
 			}
-			Console.Clear();
-			Console.ForegroundColor = ConsoleColor.Green;
-			Console.WriteLine("Winner");
+			
+			
 			Console.ResetColor();
 			Console.CursorVisible = false;
 			Console.WriteLine("Play another round? (y/n)");
@@ -113,7 +137,6 @@
 			    map[i,j] = Water;
 			}
 		}
-
 		return map;
 	}
 
@@ -269,9 +292,7 @@
 					Console.Write('-');
                     continue;
 				}
-				if(map[x-1, y-1] == Water){
-					Console.ForegroundColor = ConsoleColor.Blue;
-				}
+				Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write(map[x-1, y-1]);
 				Console.ResetColor();
 			}
