@@ -11,6 +11,8 @@
     }
 
     public void run(){
+		Console.OutputEncoding = System.Text.Encoding.Unicode;
+		Console.Clear();
         Console.Title = "Battleships";
 		Console.WriteLine("There will be 1 2TileShip, 2 3TileShip, 1 4TileShip, 1 5TileShip");
         Console.WriteLine("Press any Key to bombard a random map!");
@@ -277,7 +279,25 @@
 
 		Console.SetCursorPosition(FieldSize[0] + 5, 0);
 		Console.Write("Fired cannonballs: 0");
+
+		Console.SetCursorPosition(FieldSize[0] + 5, 3);
+		Console.Write("Movement:");
+
+		Console.SetCursorPosition(FieldSize[0] + 9, 4);
+		//Console.Write((char)708);
+		Console.Write((char)8593);
+		Console.SetCursorPosition(FieldSize[0] + 7, 5);
+		Console.Write($"{(char)8592}   {(char)8594}");
+		//Console.Write((char)706);
+		//Console.SetCursorPosition(FieldSize[0] + 10, 5);
+		//Console.Write((char)707);
 		
+		Console.SetCursorPosition(FieldSize[0] + 9, 6);
+		//Console.Write((char)709);
+		Console.Write((char)8595);
+
+		Console.SetCursorPosition(FieldSize[0] + 5, 8);
+		Console.Write("Space to shoot");
 	}
 	
 }
