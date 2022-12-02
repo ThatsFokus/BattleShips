@@ -74,6 +74,7 @@
 			}
 			Console.Clear();
 			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine($"You took {shotsTaken} shots!");
 			Console.WriteLine("Winner");
 			Console.ResetColor();
 			Console.CursorVisible = false;
