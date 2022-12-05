@@ -102,6 +102,8 @@
     }
 
 	public void TakeShot(int x, int y){
+
+		if(map[x, y] != Water) return;
 		shotsTaken++;
 		if (mapwithships[x, y] == HiddenShip) {
 			map[x,y] = ShipHit;

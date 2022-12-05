@@ -11,6 +11,7 @@ class MyGame
 	private SKSurface surface;
 	private SKCanvas canvas;
 	private GL gl;
+	private AL al;
 	private int cellSize = 50;
 
 	private int distance = 50;
@@ -19,6 +20,26 @@ class MyGame
 	private List<Key> pressedKeys;
 	private Program battleships;
 	private int state = 0;
+
+	private void getAsset(out SKImage texture, string path){
+		SKData data = SKData.Create(path);
+		texture = SKImage.FromEncodedData(data);
+		if(texture == null) Console.WriteLine($"[ASSET LOADER] '{path}' asset couldn't be read");
+	}
+
+	private void playMusic(string path){
+		var buffer = al.GenBuffer();
+		var buffers = new uint[1];
+		var source = al.GenSource();
+		al.SetSourceProperty(source, SourceBoolean.Looping, true);
+		al.SetSourceProperty(source, SourceVector3.Position, 0, 0, 0);
+		var data = File.ReadAllBytes(path);
+		al.BufferData(buffer, BufferFormat.Mono8, data, 1);
+		buffers[0] = buffer;
+		al.SourceQueueBuffers(source, buffers);
+		al.SourcePlay(source);
+		Console.WriteLine($"{data} \n PLaying Audio");
+	}
 
 	public MyGame(int width, int height, string title){
 		var options = WindowOptions.Default;
@@ -163,6 +184,13 @@ class MyGame
 		var typeface = SKTypeface.CreateDefault();
 		paint = new SKPaint(new SKFont(typeface));
 
+		//set up audio
+		al = AL.GetApi();
+		var alContext = ALContext.GetApi();
+		al.Enable(Capability.Invalid);
+		al.SetListenerProperty(ListenerVector3.Position, 0, 0, 0);
+		al.SetListenerProperty(ListenerFloat.Gain, 1);
+
 		//add gameObjects
 		//add ground
 		createObjects();
@@ -200,8 +228,6 @@ class MyGame
 
 	}
 	
-
-
 	private void swapBuffers(){
 		canvas.Flush();
 		window.SwapBuffers();
@@ -212,6 +238,7 @@ class MyGame
 		//create all variables
 		pressedKeys = new List<Key>();
 		battleships = new Program();
+		playMusic("./Assets/Music/Background.wav");
 	}
 
 	void onClosing(){
