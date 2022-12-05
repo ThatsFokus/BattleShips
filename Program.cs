@@ -6,8 +6,8 @@
 	private readonly char ShipMiss = 'O';
 	private readonly int[] FieldSize = {10, 10};
 	private readonly int[] WindowSize = {852, 480};
-
-    private static void Main(string[] args){
+	
+    /*private static void Main(string[] args){
 		if (args.Contains("--server")){
 			var server = new Server();
 			server.StartServer();
@@ -26,7 +26,16 @@
 			return;
 		}
 		new Program().run();
-    }
+    }*/
+
+	private static void Main(String[] args){
+		if(args[0] == "server"){
+			new Server().hostServer();
+		}
+		if(args[0] == "client"){
+			new Client().startClient();
+		}
+	}
 
     public void run(){
 		Console.Clear();
